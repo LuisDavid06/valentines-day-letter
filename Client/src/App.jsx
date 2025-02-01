@@ -1,10 +1,13 @@
-import { useState } from "react";
 import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0);
+import { Container, Button } from "./components/UI";
 
-  return <div></div>;
+function App() {
+  return (
+    <Container>
+      <Button className="text-yellow-300">Prueba</Button>
+    </Container>
+  );
 }
 
 export default App;
