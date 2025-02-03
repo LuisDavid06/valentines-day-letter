@@ -9,7 +9,7 @@ export const Container = ({
 }) => {
   return (
     <div
-      className={`flex h-screen flex-1 flex-col items-center px-6 lg:px-8 mb-8 ${
+      className={`flex h-screen flex-1 flex-col items-center px-6 lg:px-8 ${
         blockEvents && "opacity-50 pointer-events-none"
       } ${className}`}
       {...props}
