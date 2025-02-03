@@ -28,7 +28,7 @@ function App() {
 
     const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-    setContador(`${days}d ${hours}hr ${minutes}min ${seconds} g`);
+    setContador(`${days}d ${hours}hr ${minutes}min ${seconds}sg`);
   };
 
   useEffect(() => {
@@ -46,12 +46,16 @@ function App() {
         data-tooltip-content="Click para abrir"
         className="cursor-pointer hover:bg-gray-200 w-[80%] sm:w-[60%] md:w-[50%] max-w-[500px] h-28 sm:h-36 md:h-44 bg-white rounded-md flex items-center justify-center border-gray-300 border shadow-lg"
       >
-        <img className="w-6 sm:w-8 animate-bounce" src="/favicon.svg" alt="" />
+        <img
+          className="w-6 sm:w-8 animate-bounce"
+          src="/favicon.svg"
+          alt="Heart"
+        />
       </div>
 
-      <div className="flex flex-col items-center justify-center text-center mt-2">
-        <span className="text-black">Podrás abrirla dentro de</span>
-        <span className="text-black">{contador}</span>
+      <div className="flex flex-col items-center justify-center text-center mt-2 text-black">
+        <span>Podrás abrirla dentro de</span>
+        <span className="font-bold">{contador}</span>
       </div>
     </Container>
   );
