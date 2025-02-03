@@ -19,22 +19,24 @@ function App() {
 
     const now = new Date();
 
-    const timeDifference = targetDate - now;
+    if (now < targetDate) {
+      const timeDifference = targetDate - now;
 
-    // Cálculos de tiempo
-    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      // Cálculos de tiempo
+      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
-    const hours = Math.floor(
-      (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
+      const hours = Math.floor(
+        (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
 
-    const minutes = Math.floor(
-      (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
-    );
+      const minutes = Math.floor(
+        (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+      );
 
-    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-    setContador(`${days}d ${hours}hr ${minutes}min ${seconds}sg`);
+      setContador(`${days}d ${hours}hr ${minutes}min ${seconds}sg`);
+    }
   };
 
   const abrirCarta = () => {
@@ -55,7 +57,7 @@ function App() {
   };
 
   return (
-    <Container className="justify-center text-center text-black">
+    <Container className="justify-center text-center text-black select-none">
       <Tooltip id={id} />
 
       <span className="text-lg sm:text-xl md:text-2xl mb-1">
@@ -75,8 +77,14 @@ function App() {
       </div>
 
       <div className="flex flex-col items-center justify-center mt-2">
-        <span>Podrás abrirla dentro de</span>
-        <span className="font-bond">{contador}</span>
+        {contador ? (
+          <>
+            <span>Podrás abrirla dentro de</span>
+            <span className="font-bond">{contador}</span>
+          </>
+        ) : (
+          <span className="sm:text-lg">¡Ábrela!</span>
+        )}
       </div>
     </Container>
   );
