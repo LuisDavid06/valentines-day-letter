@@ -89,7 +89,7 @@ function App() {
         </div>
       </div>
 
-      <footer className="pb-2 text-sm sm:text-base">
+      <footer className="pb-[15vh] sm:pb-[5vh] text-sm sm:text-base">
         Hecho por{" "}
         <a
           href="https://github.com/LisandrOviedo"
