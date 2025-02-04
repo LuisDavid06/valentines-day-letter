@@ -15,10 +15,10 @@ function App() {
     setInterval(calcularConteo, 1000);
   }, []);
 
-  const targetDate = new Date("2025-02-14T00:00:00"); // 14 de febrero de 2025 a las 12 de la medianoche
-  const now = new Date();
-
   const calcularConteo = () => {
+    const targetDate = new Date("2025-02-14T00:00:00"); // 14 de febrero de 2025 a las 12 de la medianoche
+    const now = new Date();
+
     if (now < targetDate) {
       const timeDifference = targetDate - now;
 
@@ -42,6 +42,9 @@ function App() {
   };
 
   const abrirCarta = () => {
+    const targetDate = new Date("2025-02-14T00:00:00"); // 14 de febrero de 2025 a las 12 de la medianoche
+    const now = new Date();
+
     if (now < targetDate) {
       Swal.fire({
         text: "¡Aún no puedes abrirla!",
