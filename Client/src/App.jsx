@@ -7,18 +7,18 @@ import Swal from "sweetalert2";
 import { Container } from "./components/UI";
 
 function App() {
-  const [contador, setContador] = useState();
-  const id = useId();
+  const [contador, setContador] = useState(undefined);
+  const tooltipLetter = useId();
+  const tooltipGithub = useId();
 
   useEffect(() => {
     setInterval(calcularConteo, 1000);
   }, []);
 
+  const targetDate = new Date("2025-02-14T00:00:00"); // 14 de febrero de 2025 a las 12 de la medianoche
+  const now = new Date();
+
   const calcularConteo = () => {
-    const targetDate = new Date("2025-02-14T00:00:00"); // 14 de febrero de 2025 a las 12 de la medianoche
-
-    const now = new Date();
-
     if (now < targetDate) {
       const timeDifference = targetDate - now;
 
@@ -36,14 +36,12 @@ function App() {
       const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
       setContador(`${days}d ${hours}hr ${minutes}min ${seconds}sg`);
+    } else {
+      setContador(null);
     }
   };
 
   const abrirCarta = () => {
-    const targetDate = new Date("2025-02-14T00:00:00"); // 14 de febrero de 2025 a las 12 de la medianoche
-
-    const now = new Date();
-
     if (now < targetDate) {
       Swal.fire({
         text: "¡Aún no puedes abrirla!",
@@ -57,35 +55,54 @@ function App() {
   };
 
   return (
-    <Container className="justify-center text-center text-black select-none">
-      <Tooltip id={id} />
+    <Container className="text-center text-black select-none">
+      <Tooltip id={tooltipLetter} />
+      <Tooltip id={tooltipGithub} />
 
-      <span className="text-lg sm:text-xl md:text-2xl mb-1">
-        Valentine's Day Letter
-      </span>
-      <div
-        data-tooltip-id={id}
-        data-tooltip-content="Click para abrir"
-        className="cursor-pointer hover:bg-gray-200 w-[80%] max-w-[250px] sm:w-[60%] md:w-[50%] md:max-w-[500px] h-28 sm:h-36 md:h-44 bg-white rounded-md flex items-center justify-center border-gray-300 border shadow-lg"
-        onClick={abrirCarta}
-      >
-        <img
-          className="w-6 sm:w-8 md:w-9 animate-bounce"
-          src="/favicon.svg"
-          alt="Heart"
-        />
+      <div className="w-[80%] max-w-[250px] sm:w-[60%] md:w-[50%] md:max-w-[500px]">
+        <span className="text-lg sm:text-xl md:text-2xl mb-1 text-red-600">
+          Valentine's Day Letter
+        </span>
+        <div
+          data-tooltip-id={tooltipLetter}
+          data-tooltip-content="Click para abrir"
+          className="cursor-pointer hover:bg-gray-200 h-28 sm:h-36 md:h-44 bg-white rounded-md flex items-center justify-center border-gray-300 border shadow-lg"
+          onClick={abrirCarta}
+          data-tooltip-place="right"
+        >
+          <img
+            className="w-6 sm:w-8 md:w-9 animate-bounce"
+            src="/favicon.svg"
+            alt="Heart"
+          />
+        </div>
+
+        <div className="flex flex-col items-center justify-center mt-2">
+          {contador !== undefined && contador !== null ? (
+            <>
+              <span>Podrás abrirla dentro de</span>
+              <span className="font-bond">{contador}</span>
+            </>
+          ) : contador !== undefined && contador === null ? (
+            <span className="sm:text-lg">¡Ábrela!</span>
+          ) : null}
+        </div>
       </div>
 
-      <div className="flex flex-col items-center justify-center mt-2">
-        {contador ? (
-          <>
-            <span>Podrás abrirla dentro de</span>
-            <span className="font-bond">{contador}</span>
-          </>
-        ) : (
-          <span className="sm:text-lg">¡Ábrela!</span>
-        )}
-      </div>
+      <footer className="pb-2 text-sm sm:text-base">
+        Hecho por{" "}
+        <a
+          href="https://github.com/LisandrOviedo"
+          className="text-red-600 hover:text-red-500"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-tooltip-id={tooltipGithub}
+          data-tooltip-content="Click para ver detalles"
+        >
+          Lisandro Oviedo
+        </a>{" "}
+        © 2025
+      </footer>
     </Container>
   );
 }
