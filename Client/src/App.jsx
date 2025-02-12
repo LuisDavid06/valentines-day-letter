@@ -93,18 +93,8 @@ function App() {
       </div>
 
       <footer className="pb-[15vh] sm:pb-[5vh] text-sm sm:text-base">
-        Hecho por{" "}
-        <a
-          href="https://github.com/LisandrOviedo"
-          className="text-red-600 hover:text-red-500"
-          target="_blank"
-          rel="noopener noreferrer"
-          data-tooltip-id={tooltipGithub}
-          data-tooltip-content="Click para ver detalles"
-        >
-          Lisandro Oviedo
-        </a>{" "}
-        © 2025
+        Hecho con <span className="text-red-600 hover:text-red-500">❤️</span>{" "}
+        para el amor de mi vida
       </footer>
     </Container>
   );
