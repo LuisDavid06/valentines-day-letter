@@ -1,7 +1,7 @@
 import "./App.css";
 
 import { Tooltip } from "react-tooltip";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import Swal from "sweetalert2";
 
 import { Container } from "./components/UI";
@@ -10,10 +10,38 @@ function App() {
   const [contador, setContador] = useState(undefined);
   const tooltipLetter = useId();
   const tooltipGithub = useId();
+  const audioRef = useRef(null);
 
   useEffect(() => {
     setInterval(calcularConteo, 1000);
   }, []);
+
+  useEffect(() => {
+    Swal.fire({
+      text: "¿Deseas visualizar con audio?",
+      imageUrl: "/Sound.gif",
+      imageHeight: 100,
+      showCancelButton: true,
+      confirmButtonColor: "green",
+      cancelButtonColor: "red",
+      confirmButtonText: "Si",
+      cancelButtonText: "No",
+      heightAuto: true,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        handlePlay();
+      }
+    });
+  }, []);
+
+  const handlePlay = () => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.play().catch((error) => {
+        console.error("Error al reproducir:", error);
+      });
+    }
+  };
 
   const calcularConteo = () => {
     const targetDate = new Date("2025-02-14T00:00:00"); // 14 de febrero de 2025 a las 12 de la medianoche
@@ -61,6 +89,11 @@ function App() {
     <Container className="text-center text-black select-none">
       <Tooltip id={tooltipLetter} />
       <Tooltip id={tooltipGithub} />
+
+      <audio ref={audioRef} autoPlay loop>
+        <source src="/Song.mp3" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
 
       <div className="w-[80%] max-w-[250px] sm:w-[60%] md:w-[50%] md:max-w-[500px]">
         <span className="text-lg sm:text-xl md:text-2xl mb-1 text-red-600">
