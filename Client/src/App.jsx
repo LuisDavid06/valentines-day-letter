@@ -22,7 +22,7 @@ function App() {
       imageUrl: "/Sound.gif",
       imageHeight: 100,
       showCancelButton: true,
-      confirmButtonColor: "green",
+      confirmButtonColor: "#f8359b",
       cancelButtonColor: "red",
       confirmButtonText: "Si",
       cancelButtonText: "No",
@@ -91,7 +91,7 @@ function App() {
       <Tooltip id={tooltipGithub} />
 
       <audio ref={audioRef} autoPlay loop>
-        <source src="/Song.mp3" type="audio/mpeg" />
+        <source src="/musica.mp3" type="audio/mpeg" />
         Tu navegador no soporta el elemento de audio.
       </audio>
 
